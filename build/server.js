@@ -1176,8 +1176,7 @@ var _test = __webpack_require__(17);
 // import _ from 'lodash';
 
 (0, _test.blegh)();
-console.log('from server.');
-// throw new Error('blegh');
+console.log('from server');
 
 // const arr = [1, 2, 3, 4, 5];
 // console.log(_.filter(arr, a => a < 5));

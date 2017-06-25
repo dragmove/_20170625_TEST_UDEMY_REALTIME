@@ -1,6 +1,5 @@
 const webpack = require('webpack'),
-  path = require('path'),
-  fs = require('fs');
+  path = require('path');
 
 function createConfig(isDebug) {
   let plugins = [];

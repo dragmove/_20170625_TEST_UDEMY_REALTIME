@@ -1,12 +1,18 @@
 const webpack = require('webpack'),
-  path = require('path');
+  path = require('path'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const vendorModules = ['jquery', 'lodash'];
 
 const dirname = path.resolve('./');
 
 function createConfig(isDebug) {
   const devTool = isDebug ? 'eval-source-map' : 'source-map';
 
-  const plugins = [];
+  const plugins = [new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.js'
+  })];
 
   const cssLoader = {
       test: /\.css$/,
@@ -20,12 +26,28 @@ function createConfig(isDebug) {
 
   const appEntry = ['./src/client/application.js'];
 
+  if(!isDebug) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(new ExtractTextPlugin('[name].css'));
+
+    cssLoader.loader = ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: 'css-loader'
+    });
+
+    sassLoader.loader = ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: 'css-loader!sass-loader'
+    });
+  }
+
   return {
     context: dirname,
 
     devtool: devTool,
     entry: {
-      application: appEntry
+      application: appEntry,
+      vendor: vendorModules
     },
     output: {
       libraryTarget: 'umd',
@@ -52,7 +74,7 @@ function createConfig(isDebug) {
           exclude: /node_modules/
         }, {
           test: /\.(png|jpg|jpeg|gif|woff|woff2|ttf|eot|svg)/,
-          loader: 'url-loader?limit=512'
+          loader: 'url-loader?limit=1024'
         },
         cssLoader,
         sassLoader

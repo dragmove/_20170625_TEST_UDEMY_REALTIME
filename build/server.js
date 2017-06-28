@@ -6503,7 +6503,7 @@ var _http2 = _interopRequireDefault(_http);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import socketIo from 'socket.io';
+//import socketIo from 'socket.io';
 
 // const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -6518,9 +6518,11 @@ var server = new _http2.default.Server(app);
 
 // configure express
 app.locals.pretty = true;
-// app.set('view engine', 'jade');
+// app.set('view engine', 'pug');
 // app.set('views', './views');
 app.use(_express2.default.static('public'));
+
+console.log(app.get('view engine'));
 
 // const useExternalStyles = !isDevelopment;
 
@@ -6528,12 +6530,7 @@ app.get('/', function (req, res) {
   console.log('ok');
 
   res.send('Hello world');
-
-  /*
-  res.render('index', {
-    useExternalStyles
-  });
-  */
+  // res.render('index.pug');
 });
 
 // modules

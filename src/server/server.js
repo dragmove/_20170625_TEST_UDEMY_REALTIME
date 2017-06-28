@@ -2,7 +2,7 @@
 
 import express from 'express';
 import http from 'http';
-// import socketIo from 'socket.io';
+//import socketIo from 'socket.io';
 
 // const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -15,9 +15,11 @@ const server = new http.Server(app);
 
 // configure express
 app.locals.pretty = true;
-// app.set('view engine', 'jade');
+// app.set('view engine', 'pug');
 // app.set('views', './views');
 app.use(express.static('public'));
+
+console.log(app.get('view engine'));
 
 // const useExternalStyles = !isDevelopment;
 
@@ -25,12 +27,7 @@ app.get('/', (req, res) => {
   console.log('ok');
 
   res.send('Hello world');
-
-  /*
-  res.render('index', {
-    useExternalStyles
-  });
-  */
+  // res.render('index.pug');
 });
 
 // modules

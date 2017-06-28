@@ -37,7 +37,6 @@
     "jade": "^1.11.0",
     "jquery": "^3.2.1",
     "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3",
     "utf-8-validate": "^3.0.2",
     "ws": "^3.0.0"
   },

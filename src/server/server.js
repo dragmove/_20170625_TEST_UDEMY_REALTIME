@@ -1,10 +1,57 @@
-import 'source-map-support/register';
+// import 'source-map-support/register';
 
-import {blegh} from 'shared/test';
-// import _ from 'lodash';
+import express from 'express';
+import http from 'http';
+// import socketIo from 'socket.io';
 
-blegh();
-console.log('from server');
+// const isDevelopment = process.env.NODE_ENV !== 'production';
 
-// const arr = [1, 2, 3, 4, 5];
-// console.log(_.filter(arr, a => a < 5));
+// setup
+const app = express();
+const server = new http.Server(app);
+// const io = socketIo(server);
+
+// client webpack
+
+// configure express
+app.locals.pretty = true;
+// app.set('view engine', 'jade');
+// app.set('views', './views');
+app.use(express.static('public'));
+
+// const useExternalStyles = !isDevelopment;
+
+app.get('/', (req, res) => {
+  console.log('ok');
+
+  res.send('Hello world');
+
+  /*
+  res.render('index', {
+    useExternalStyles
+  });
+  */
+});
+
+// modules
+
+
+// socket
+/*
+io.on('connection', (socket) => {
+  console.log('socket :', socket);
+  // console.log(`got connection from ${socket.request.connection.remoteAddress}`);
+});
+*/
+
+// start up
+const port = process.env.PORT || 3000;
+
+function startServer() {
+  server.listen(port, () => {
+    console.log(`started http server ${port}`);
+  });
+}
+
+startServer();
+

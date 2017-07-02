@@ -20,11 +20,13 @@ function createConfig(isDebug) {
     context: __dirname,
     target: 'node',
     devtool: 'source-map', // https://webpack.js.org/configuration/devtool/
-    entry: './src/server/server.js',
+    entry: {
+      'server': './src/server/server.js'
+    },
     output: {
       libraryTarget: 'umd',
       path: path.join(__dirname, 'build'),
-      filename: 'server.js'
+      filename: '[name].js'
     },
 
     resolve: {

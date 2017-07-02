@@ -1,45 +1,39 @@
 // import 'source-map-support/register';
 
-import express from 'express';
-import http from 'http';
-//import socketIo from 'socket.io';
+var express = require('express'),
+  http = require('http'),
+  socketIo = require('socket.io');
 
-// const isDevelopment = process.env.NODE_ENV !== 'production';
+var isDevelopment = process.env.NODE_ENV !== 'production';
 
 // setup
-const app = express();
-const server = new http.Server(app);
-// const io = socketIo(server);
+var app = express();
+var server = new http.Server(app);
+var io = socketIo(server);
 
 // client webpack
 
 // configure express
 app.locals.pretty = true;
-// app.set('view engine', 'pug');
-// app.set('views', './views');
+app.set('view engine', 'pug');
+app.set('views', './views');
 app.use(express.static('public'));
-
-console.log(app.get('view engine'));
 
 // const useExternalStyles = !isDevelopment;
 
 app.get('/', (req, res) => {
-  console.log('ok');
-
-  res.send('Hello world');
-  // res.render('index.pug');
+  // res.send('Hello world');
+  res.render('index.pug');
 });
 
 // modules
 
 
+
 // socket
-/*
 io.on('connection', (socket) => {
-  console.log('socket :', socket);
-  // console.log(`got connection from ${socket.request.connection.remoteAddress}`);
+  console.log(`got connection from ${socket.request.connection.remoteAddress}`);
 });
-*/
 
 // start up
 const port = process.env.PORT || 3000;

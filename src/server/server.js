@@ -33,6 +33,12 @@ app.get('/', (req, res) => {
 // socket
 io.on('connection', (socket) => {
   console.log(`got connection from ${socket.request.connection.remoteAddress}`);
+
+  let index = 0;
+
+  setInterval(() => {
+    socket.emit('test', `On Index ${index++}`);
+  }, 1000);
 });
 
 // start up

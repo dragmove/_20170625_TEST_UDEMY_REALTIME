@@ -1,11 +1,18 @@
-import $ from 'jquery';
-import _ from 'lodash';
-
-import {blegh} from 'shared/test';
 import './application.scss';
 
-blegh();
+import * as services from './services';
 
-$('body').html('whoa');
+// set client socket
+services.server.on$('test')
+  .map(d => d + 'Whoa')
+  .subscribe(item => {
+    console.log(`Got ${item} from server!`);
+  });
 
-console.log('_ :', _);
+// auth
+
+// components
+
+// bootstrap
+console.log('services.socket :', services.socket);
+services.socket.connect();

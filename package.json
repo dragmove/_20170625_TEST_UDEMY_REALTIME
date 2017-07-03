@@ -36,10 +36,13 @@
   "dependencies": {
     "bindings": "^1.2.1",
     "express": "^4.15.3",
+    "font-awesome": "^4.7.0",
     "jade": "^1.11.0",
     "jquery": "^3.2.1",
     "pug": "^2.0.0-rc.2",
+    "rxjs": "^5.4.1",
     "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
     "utf-8-validate": "^3.0.2",
     "ws": "^3.0.0"
   },

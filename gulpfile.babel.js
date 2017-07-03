@@ -13,7 +13,7 @@ gulp.task('clean:server', cb => rimraf('./build', cb));
 gulp.task('clean:client', cb => rimraf('./public/build', cb));
 gulp.task('clean', gulp.parallel('clean:server', 'clean:client'));
 
-// gulp.task('dev:s햐erver', gulp.series('clean:server', devServerBuild));
+// gulp.task('dev:server', gulp.series('clean:server', devServerBuild));
 // gulp.task('dev', gulp.series('clean', devServerBuild, gulp.parallel(devServerWatch, devServerReload)));
 gulp.task('watch:dev:server', gulp.series(devServerWatch));
 

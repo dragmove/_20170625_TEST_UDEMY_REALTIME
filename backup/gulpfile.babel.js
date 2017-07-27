@@ -14,32 +14,43 @@ gulp.task('clean:client', cb => rimraf('./public/build', cb));
 gulp.task('clean', gulp.parallel('clean:server', 'clean:client'));
 
 gulp.task('dev:server', gulp.series('clean:server', devServerBuild));
-gulp.task('dev', gulp.series('clean', devServerBuild, gulp.parallel(devServerWatch, devServerReload)));
-// gulp.task('watch:dev:server', gulp.series(devServerWatch));
-
-// gulp.task('prod:server', gulp.series('clean:server', prodServerBuild));
-gulp.task('prod:client', gulp.series('clean:client', prodClientBuild));
-// gulp.task('prod', gulp.series('clean', gulp.parallel(prodServerBuild, prodClientBuild)));
-
-// private client
-function prodClientBuild(callback) {
-  const compiler = webpack(createClientConfig(false));
-
-  compiler.run((error, stats) => {
-    outputWebpack('prod:client', error, stats);
-    callback();
-  });
-}
+gulp.task('prod:server', gulp.series('clean:server', prodServerBuild));
 
 // private server
 const devServerWebpack = webpack(createServerConfig(true));
+const prodServerWebpack = webpack(createServerConfig(false));
 
 function devServerBuild(callback) {
   devServerWebpack.run((error, stats) => {
-    outputWebpack('dev:server', error, stats);
+    outputWebpack('Dev:server', error, stats);
     callback();
   });
 }
+
+function prodServerBuild(callback) {
+  prodServerWebpack.run((error, stats) => {
+    outputWebpack('Prod:server', error, stats);
+    callback();
+  });
+}
+
+
+// gulp.task('dev', gulp.series('clean', devServerBuild, gulp.parallel(devServerWatch, devServerReload)));
+// gulp.task('watch:dev:server', gulp.series(devServerWatch));
+// gulp.task('prod:client', gulp.series('clean:client', prodClientBuild));
+// gulp.task('prod', gulp.series('clean', gulp.parallel(prodServerBuild, prodClientBuild)));
+
+// private client
+// function prodClientBuild(callback) {
+//   const compiler = webpack(createClientConfig(false));
+//
+//   compiler.run((error, stats) => {
+//     outputWebpack('prod:client', error, stats);
+//     callback();
+//   });
+// }
+
+
 
 function devServerWatch() {
   devServerWebpack.watch({}, (error, stats) => {

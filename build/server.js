@@ -84,6 +84,8 @@ var _test = __webpack_require__(1);
 
 (0, _test.blegh)();
 
+console.log('whoa');
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {

@@ -1,5 +1,3 @@
-import { blegh } from 'shared/test.js';
+import {blegh} from 'shared/test';
 
 blegh();
-
-console.log('whoa');
